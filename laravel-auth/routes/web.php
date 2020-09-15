@@ -20,3 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//route group Admin
+Route::prefix('admin')
+  ->namespace('Admin')
+  ->middleware('auth')
+  ->name('admin.')
+  ->group(function(){
+    Route::resource('posts','PostController');
+  });
+
+Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
