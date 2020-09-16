@@ -10,9 +10,11 @@
           <p>Pubblicato il: {{$post->created_at->format('d-m-Y')}}</p>
         </div>
 
-        <div>
-          <img src="{{$post->image_path}}" alt="{{$post->title}}">
-        </div>
+        @if (!empty($post->image_path))
+          <div>
+            <img src="{{asset('storage') . '/' . $post->image_path}}" alt="{{$post->title}}">
+          </div>
+        @endif
 
         <div>
           <p>{{$post->content}}</p>
